@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AquaticArea | Planted Aquariums, Show Discus, Bettas & Dwarf Shrimp</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Three.js CDN for Real-time 3D Rimless Tank Calculator -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Custom Photorealistic Driftwood & Glass Styles -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="selection:bg-cyan-500 selection:text-slate-950">
+
+  <!-- Real-time WebGL Refracted Sunlight & Pearling Canvas -->
+  <canvas id="caustic-canvas"></canvas>
+
+  <!-- Top Official Announcement & Social Bar -->
+  <div class="relative z-20 bg-slate-950/90 border-b border-cyan-500/20 text-xs py-2 px-4">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2 text-emerald-300 font-mono-tech">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        <span>All-India Live Insulated Shipping • 100% Live Arrival Guarantee</span>
+      </div>
+      <div class="flex items-center gap-4 text-slate-300">
+        <a href="https://www.youtube.com/@aquaticarea4062" target="_blank" class="hover:text-red-400 transition font-medium">YouTube (@aquaticarea4062)</a>
+        <a href="https://instagram.com/aquatic_area" target="_blank" class="hover:text-pink-400 transition font-medium">Instagram (@aquatic_area)</a>
+        <a href="https://m.facebook.com/profile.php?id=61566915309077" target="_blank" class="hover:text-blue-400 transition font-medium">Facebook</a>
+        <a href="mailto:aquaticarea@gmail.com" class="hover:text-amber-300 transition font-mono-tech">aquaticarea@gmail.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Rimless Opti-White Glass Navbar -->
+  <header class="sticky top-0 z-30 optiwhite-glass">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+      <!-- Brand Logo (Loads images/logo.png with automatic fallback) -->
+      <a href="index.html" class="flex items-center gap-3.5 group">
+        <img 
+          src="images/logo.png" 
+          onerror="this.src='https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=160&q=80'" 
+          alt="AquaticArea Logo" 
+          class="w-12 h-12 rounded-xl object-cover border border-cyan-400/50 shadow-lg shadow-cyan-500/10"
+        />
+        <div>
+          <span class="text-xl sm:text-2xl font-extrabold tracking-wider font-display bg-gradient-to-r from-cyan-300 via-emerald-300 to-amber-200 bg-clip-text text-transparent">
+            AQUATIC AREA
+          </span>
+          <span class="block text-[11px] font-mono-tech text-slate-400 tracking-widest uppercase">
+            Planted Ecosystems • Fish • Shrimp
+          </span>
+        </div>
+      </a>
+
+      <!-- Multi-Page Navigation Links -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-200">
+        <a href="index.html" class="text-cyan-300 font-semibold border-b-2 border-cyan-400 pb-1">Home</a>
+        <a href="shop.html" class="hover:text-cyan-300 transition">Live Store</a>
+        <a href="portfolio.html" class="hover:text-emerald-300 transition">Planted Portfolio</a>
+        <a href="guides.html" class="hover:text-amber-300 transition">Aquarium Science Hub</a>
+      </nav>
+
+      <!-- Action Buttons: 3D Volume Calculator + Cart + WhatsApp -->
+      <div class="flex items-center gap-2.5">
+        <button 
+          onclick="toggleCalculatorModal(true)" 
+          class="px-3.5 py-2 rounded-xl bg-amber-500/15 hover:bg-amber-500/30 border border-amber-400/50 text-amber-200 text-xs sm:text-sm font-semibold transition flex items-center gap-1.5 shadow-lg shadow-amber-500/5"
+        >
+          <span>📐</span> <span class="hidden sm:inline">3D Tank</span> Calculator
+        </button>
+
+        <button 
+          onclick="toggleCartDrawer()" 
+          class="relative px-3.5 py-2 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/30 border border-cyan-400/40 text-cyan-200 text-xs sm:text-sm font-semibold transition flex items-center gap-1.5"
+        >
+          <span>🛒</span>
+          <span id="cart-count-badge" class="px-1.5 py-0.5 text-xs rounded-full bg-cyan-400 text-slate-950 font-bold">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION: Real Underwater Footage + Your Header Banner Integration -->
+  <section class="relative z-10 overflow-hidden py-14 lg:py-24 border-b border-emerald-900/50">
+    <!-- Real High-Definition Underwater Planted Aquarium Video Loop -->
+    <video 
+      autoplay 
+      muted 
+      loop 
+      playsinline 
+      poster="images/header.png"
+      class="absolute inset-0 w-full h-full object-cover opacity-35 scale-105 pointer-events-none"
+    >
+      <source src="https://assets.mixkit.co/videos/preview/mixkit-aquarium-with-small-fish-and-green-plants-43561-large.mp4" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-slate-950/75 to-[#02080d]"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-12 gap-10 items-center">
+      <!-- Left Hero Content -->
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-400/40 text-emerald-300 text-xs font-mono-tech">
+          <span>🌿 Everything Freshwater Planted Aquariums • Since 2020</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+          Living Underwater <br />
+          <span class="bg-gradient-to-r from-cyan-300 via-emerald-300 to-amber-200 bg-clip-text text-transparent">
+            Nature Aquariums
+          </span>
+        </h1>
+
+        <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
+          DIY Aquarium Projects, Aquarium Science, High-Tech & Low-Tech Planted Tanks, quarantined show-grade Discus, Halfmoon Bettas, Guppy trios, and Neocaridina dwarf shrimp colonies.
+        </p>
+
+        <div class="flex flex-wrap gap-3.5 pt-2">
+          <a href="#live-store" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-400 to-emerald-400 text-slate-950 font-bold text-sm shadow-lg shadow-cyan-500/20 hover:brightness-110 transition">
+            Explore Livestock & Plants
+          </a>
+          <a 
+            href="https://wa.me/917978733900?text=Hello%20AquaticArea!%20I%20want%20to%20inquire%20about%20a%20planted%20aquarium%20setup%20or%20livestock." 
+            target="_blank" 
+            class="px-6 py-3.5 rounded-xl bg-emerald-950/90 hover:bg-emerald-900 border border-emerald-400/50 text-emerald-200 font-semibold text-sm transition flex items-center gap-2"
+          >
+            <span>💬</span> WhatsApp Chat Only (+91 7978733900)
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Hero Showcase: Your Official Header Artwork inside a Driftwood Bark Frame -->
+      <div class="lg:col-span-5">
+        <div class="driftwood-box p-3">
+          <img 
+            src="images/header.png" 
+            onerror="this.src='https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1000&q=85'" 
+            alt="AquaticArea Official Banner" 
+            class="w-full h-64 sm:h-72 object-cover rounded-lg border border-cyan-500/30"
+          />
+          <div class="p-4 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-mono-tech text-amber-300 uppercase">Official YouTube Community</span>
+              <h3 class="text-base font-bold text-white">@Aquaticarea4062 • 13,300+ Views</h3>
+            </div>
+            <a href="https://www.youtube.com/@aquaticarea4062" target="_blank" class="px-3.5 py-2 rounded-lg bg-red-600 hover:bg-red-500 text-white text-xs font-bold transition">
+              Watch DIY Guides →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REAL HABITAT SHOWCASE: Real Fish Swimming, Real Shrimp Grazing & Real Aquascapes -->
+  <section class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-16">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="text-xs font-mono-tech uppercase tracking-widest text-cyan-400">Authentic Biotope Environments</span>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">Explore Our Three Living Pillars</h2>
+      <p class="text-slate-400 text-sm mt-2">Framed in natural Malaysian driftwood bark with real underwater video habitats.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-7">
+      <!-- 1. Real Fish Swimming Habitat -->
+      <div class="habitat-card group">
+        <video autoplay muted loop playsinline class="habitat-video-bg" poster="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80">
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-tropical-fish-swimming-in-an-aquarium-43563-large.mp4" type="video/mp4" />
+        </video>
+        <div class="habitat-overlay">
+          <span class="text-xs font-mono-tech text-cyan-300 mb-1">Symphysodon • Betta • Poecilia</span>
+          <h3 class="text-2xl font-bold text-white mb-2">Show-Grade Fish</h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-4">
+            Quarantined Discus, Halfmoon Plakat Bettas, and pure-strain Dumbo Mosaic Guppies conditioned for planted tanks.
+          </p>
+          <button onclick="filterCategory('fish'); document.getElementById('live-store').scrollIntoView();" class="w-full py-2.5 rounded-lg bg-cyan-500/25 hover:bg-cyan-500/40 border border-cyan-400/50 text-cyan-200 text-xs font-bold transition">
+            View Live Fish Stock →
+          </button>
+        </div>
+      </div>
+
+      <!-- 2. Real Dwarf Shrimp & Moss Habitat -->
+      <div class="habitat-card group">
+        <video autoplay muted loop playsinline class="habitat-video-bg" poster="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=900&q=80">
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-underwater-plants-and-small-fish-43560-large.mp4" type="video/mp4" />
+        </video>
+        <div class="habitat-overlay">
+          <span class="text-xs font-mono-tech text-amber-300 mb-1">Neocaridina • Caridina Clean-Up Crew</span>
+          <h3 class="text-2xl font-bold text-white mb-2">Dwarf Shrimp Colonies</h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-4">
+            Tank-bred Bloody Mary, Blue Dream, and Crystal Red shrimp actively grazing biofilm on spiderwood and weeping moss.
+          </p>
+          <button onclick="filterCategory('shrimp'); document.getElementById('live-store').scrollIntoView();" class="w-full py-2.5 rounded-lg bg-amber-500/25 hover:bg-amber-500/40 border border-amber-400/50 text-amber-200 text-xs font-bold transition">
+            View Shrimp Colonies →
+          </button>
+        </div>
+      </div>
+
+      <!-- 3. Submerged Flora & Driftwood Hardscape -->
+      <div class="habitat-card group">
+        <video autoplay muted loop playsinline class="habitat-video-bg" poster="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=900&q=80">
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-green-underwater-plants-in-an-aquarium-43562-large.mp4" type="video/mp4" />
+        </video>
+        <div class="habitat-overlay">
+          <span class="text-xs font-mono-tech text-emerald-300 mb-1">Epiphytes • In-Vitro Cups • Driftwood</span>
+          <h3 class="text-2xl font-bold text-white mb-2">Planted Aquascapes</h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-4">
+            100% snail-free tissue culture carpets, rare clumped Bucephalandra, Anubias, and aged Malaysian driftwood.
+          </p>
+          <button onclick="filterCategory('plants'); document.getElementById('live-store').scrollIntoView();" class="w-full py-2.5 rounded-lg bg-emerald-500/25 hover:bg-emerald-500/40 border border-emerald-400/50 text-emerald-200 text-xs font-bold transition">
+            View Aquatic Flora →
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DYNAMIC STORE CATALOG (Loaded from data/products.json) -->
+  <section id="live-store" class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-12">
+    <div class="flex flex-wrap items-end justify-between gap-4 mb-8">
+      <div>
+        <span class="text-xs font-mono-tech uppercase tracking-widest text-emerald-400">Direct WhatsApp Dispatch</span>
+        <h2 class="text-3xl font-bold text-white mt-1">Featured Livestock & Aquatic Flora</h2>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        <button onclick="filterCategory('all')" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-cyan-500/20 border border-cyan-400/40 text-xs font-semibold text-cyan-200 transition">All Stock</button>
+        <button onclick="filterCategory('fish')" class="px-4 py-2 rounded-lg bg-slate-900 hover:bg-cyan-500/20 border border-slate-700 text-xs font-semibold text-slate-300 transition">Fish</button>
+        <button onclick="filterCategory('shrimp')" class="px-4 py-2 rounded-lg bg-slate-900 hover:bg-cyan-500/20 border border-slate-700 text-xs font-semibold text-slate-300 transition">Shrimp</button>
+        <button onclick="filterCategory('plants')" class="px-4 py-2 rounded-lg bg-slate-900 hover:bg-cyan-500/20 border border-slate-700 text-xs font-semibold text-slate-300 transition">Planted Flora</button>
+      </div>
+    </div>
+
+    <div id="featured-products-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7"></div>
+  </section>
+
+  <!-- POPUP MODAL: 3D INTERACTIVE RIMLESS AQUARIUM VOLUME & SUBSTRATE CALCULATOR -->
+  <div id="calc-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-md p-4">
+    <div class="driftwood-box max-w-4xl w-full p-6 sm:p-8 relative max-h-[92vh] overflow-y-auto">
+      <button onclick="toggleCalculatorModal(false)" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-800 hover:bg-rose-600 text-white font-bold">✕</button>
+
+      <div class="mb-6">
+        <span class="text-xs font-mono-tech text-amber-300 uppercase">Interactive Three.js Hardware Tool</span>
+        <h3 class="text-2xl font-bold text-white">3D Rimless Aquarium Volume & Aquasoil Calculator</h3>
+      </div>
+
+      <div class="grid md:grid-cols-12 gap-6 items-center">
+        <!-- Left Controls -->
+        <div class="md:col-span-5 space-y-4">
+          <div>
+            <label class="text-xs text-slate-300 block mb-1">Tank Length (cm)</label>
+            <input id="calc-L" type="number" value="90" oninput="updateTankCalculations()" class="w-full px-3.5 py-2 rounded-lg bg-slate-900 border border-cyan-500/40 text-white font-mono-tech" />
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="text-xs text-slate-300 block mb-1">Width / Depth (cm)</label>
+              <input id="calc-W" type="number" value="45" oninput="updateTankCalculations()" class="w-full px-3.5 py-2 rounded-lg bg-slate-900 border border-cyan-500/40 text-white font-mono-tech" />
+            </div>
+            <div>
+              <label class="text-xs text-slate-300 block mb-1">Height (cm)</label>
+              <input id="calc-H" type="number" value="45" oninput="updateTankCalculations()" class="w-full px-3.5 py-2 rounded-lg bg-slate-900 border border-cyan-500/40 text-white font-mono-tech" />
+            </div>
+          </div>
+          <div>
+            <label class="text-xs text-emerald-300 block mb-1">Avg. Aquasoil Slope Thickness (cm)</label>
+            <input id="calc-soil" type="number" value="6" oninput="updateTankCalculations()" class="w-full px-3.5 py-2 rounded-lg bg-slate-900 border border-emerald-500/40 text-white font-mono-tech" />
+          </div>
+          <button onclick="sendTankSpecWhatsApp()" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs sm:text-sm transition">
+            Send My Tank Specs to WhatsApp (+91 7978733900)
+          </button>
+        </div>
+
+        <!-- Center/Right 3D Rimless Tank Viewport + Live Output -->
+        <div class="md:col-span-7 space-y-4">
+          <div id="three-tank-viewport" class="w-full h-56 rounded-xl bg-slate-950/90 border border-cyan-500/30 flex items-center justify-center overflow-hidden"></div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs font-mono-tech">
+            <div class="p-3 rounded-lg bg-slate-900/90 border border-slate-800">
+              <span class="text-slate-400 block">Gross Volume</span>
+              <strong id="res-gross" class="text-cyan-300 text-sm">182.3 L</strong>
+            </div>
+            <div class="p-3 rounded-lg bg-slate-900/90 border border-slate-800">
+              <span class="text-slate-400 block">Net Water (-15%)</span>
+              <strong id="res-net" class="text-emerald-300 text-sm">154.9 L</strong>
+            </div>
+            <div class="p-3 rounded-lg bg-slate-900/90 border border-slate-800">
+              <span class="text-slate-400 block">Active Aquasoil</span>
+              <strong id="res-soil" class="text-amber-300 text-sm">24.3 L</strong>
+            </div>
+            <div class="p-3 rounded-lg bg-slate-900/90 border border-slate-800">
+              <span class="text-slate-400 block">Canister Filter</span>
+              <strong id="res-filter" class="text-white text-sm">1085 L/hr</strong>
+            </div>
+            <div class="p-3 rounded-lg bg-slate-900/90 border border-slate-800 col-span-2 sm:col-span-2">
+              <span class="text-slate-400 block">Recommended Heater</span>
+              <strong id="res-heater" class="text-white text-sm">200W Titanium Heater</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDING CART DRAWER -->
+  <div id="cart-drawer" class="fixed top-0 right-0 z-50 h-full w-80 sm:w-96 optiwhite-glass p-6 transform translate-x-full transition-transform duration-300 flex flex-col justify-between">
+    <div>
+      <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+        <h3 class="text-lg font-bold text-white">Your Livestock Basket</h3>
+        <button onclick="toggleCartDrawer(false)" class="text-slate-400 hover:text-white">✕</button>
+      </div>
+      <div id="cart-items-list" class="my-4 space-y-3 max-h-[60vh] overflow-y-auto"></div>
+    </div>
+    <div class="pt-4 border-t border-slate-800 space-y-3">
+      <div class="flex items-center justify-between text-base font-bold">
+        <span>Estimated Total:</span>
+        <span id="cart-total-inr" class="text-cyan-300">₹0</span>
+      </div>
+      <button onclick="checkoutCartWhatsApp()" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition">
+        Order via WhatsApp (+91 7978733900)
+      </button>
+    </div>
+  </div>
+
+  <!-- FOOTER WITH ALL VERIFIED SOCIALS -->
+  <footer class="relative z-10 border-t border-slate-800/80 bg-slate-950/90 py-12 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-sm">
+      <div>
+        <h4 class="font-display font-bold text-white text-lg mb-2">AQUATIC AREA</h4>
+        <p class="text-slate-400 text-xs leading-relaxed">
+          Everything Freshwater Planted Aquariums — DIY Aquarium Projects, Aquarium Science, Planted Tanks and much more.
+        </p>
+      </div>
+      <div>
+        <h4 class="font-bold text-white mb-2">Quick Navigation</h4>
+        <ul class="space-y-1.5 text-xs text-slate-300">
+          <li><a href="shop.html" class="hover:text-cyan-300">Live Fish, Shrimp & Plant Store</a></li>
+          <li><a href="portfolio.html" class="hover:text-cyan-300">Custom Aquascape Portfolio</a></li>
+          <li><a href="guides.html" class="hover:text-cyan-300">Nitrogen Cycle & Parameter Guides</a></li>
+          <li><button onclick="toggleCalculatorModal(true)" class="hover:text-amber-300">3D Tank Volume Calculator</button></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-white mb-2">Official Social Channels</h4>
+        <ul class="space-y-1.5 text-xs text-slate-300">
+          <li><a href="https://www.youtube.com/@aquaticarea4062" target="_blank" class="hover:text-red-400">▶ YouTube: @Aquaticarea4062</a></li>
+          <li><a href="https://instagram.com/aquatic_area" target="_blank" class="hover:text-pink-400">📸 Instagram: @aquatic_area</a></li>
+          <li><a href="https://m.facebook.com/profile.php?id=61566915309077" target="_blank" class="hover:text-blue-400">📘 Facebook Official Profile</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-white mb-2">Direct Contact (India)</h4>
+        <p class="text-xs text-emerald-300 font-mono-tech mb-1">💬 WhatsApp Only: +91 7978733900</p>
+        <p class="text-xs text-slate-300 font-mono-tech">✉️ Email: aquaticarea@gmail.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
