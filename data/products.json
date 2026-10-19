@@ -1,0 +1,74 @@
+[
+  {
+    "id": "discus-rt",
+    "name": "Red Turquoise Discus (Show Grade)",
+    "category": "fish",
+    "priceINR": 2400,
+    "size": "3.5 - 4.0 Inch",
+    "params": "28-30°C | pH 6.2-6.8 | TDS 80-150",
+    "stock": "In Stock (Quarantined 14 Days)",
+    "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=85",
+    "featured": true,
+    "description": "High-body Symphysodon aequifasciatus with vibrant electric blue striations over deep crimson base. Conditioned on beefheart & spirulina granules."
+  },
+  {
+    "id": "betta-hm",
+    "name": "Halfmoon Plakat Betta (Avatar Copper)",
+    "category": "fish",
+    "priceINR": 1250,
+    "size": "Adult Show Male",
+    "params": "25-27°C | pH 6.5-7.2 | Low Flow",
+    "stock": "Limited Stock",
+    "image": "https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?auto=format&fit=crop&w=900&q=85",
+    "featured": true,
+    "description": "Metallic turquoise-scale Plakat with crisp 180-degree caudal spread. Thrives in tannin-rich blackwater or heavily planted nano setups."
+  },
+  {
+    "id": "guppy-dumbo",
+    "name": "Platinum Dumbo Ear Mosaic Guppy (Trio)",
+    "category": "fish",
+    "priceINR": 750,
+    "size": "1 Male + 2 Females",
+    "params": "23-26°C | pH 7.0-7.8 | GH 8-12",
+    "stock": "Breeding Trio Available",
+    "image": "https://images.unsplash.com/photo-1535591273668-578e31182c4f?auto=format&fit=crop&w=900&q=85",
+    "featured": false,
+    "description": "Pure line-bred strain featuring oversized pastel pectoral fins and high-contrast mosaic tail patterning."
+  },
+  {
+    "id": "shrimp-bloody-mary",
+    "name": "Bloody Mary Neocaridina Shrimp (Colony of 10)",
+    "category": "shrimp",
+    "priceINR": 1100,
+    "size": "1.2 - 1.8 cm Juveniles",
+    "params": "20-25°C | pH 6.8-7.6 | TDS 160-220",
+    "stock": "Tank-Bred Colony",
+    "image": "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=900&q=85",
+    "featured": true,
+    "description": "Deep wine-red translucent tissue coloration bred in planted tanks. Superior algae and biofilm grazers for aquascapes."
+  },
+  {
+    "id": "plant-buce",
+    "name": "Bucephalandra 'Kedagang' Clump on Lava Rock",
+    "category": "plants",
+    "priceINR": 650,
+    "size": "10+ Rhizome Heads",
+    "params": "Low-Med Light | CO2 Optional | Epiphyte",
+    "stock": "100% Submerged Grown",
+    "image": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=900&q=85",
+    "featured": true,
+    "description": "Dark plum-green ruffled leaves sprinkled with metallic silver micro-dots (pearling pores). Ready to place directly into hardscape crevices."
+  },
+  {
+    "id": "plant-mc-tc",
+    "name": "Micranthemum 'Monte Carlo' (In-Vitro Cup)",
+    "category": "plants",
+    "priceINR": 280,
+    "size": "7cm Tissue Culture Cup",
+    "params": "Med-High Light | CO2 Recommended | Foreground",
+    "stock": "Snail & Algae Free",
+    "image": "https://images.unsplash.com/photo-1516562309708-05f3b2b2c238?auto=format&fit=crop&w=900&q=85",
+    "featured": false,
+    "description": "Sterile laboratory-grown foreground carpeting flora. Forms lush, bright emerald cascading mats over aquasoil and driftwood."
+  }
+]
