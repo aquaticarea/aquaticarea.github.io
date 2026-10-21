@@ -5,13 +5,11 @@
   --bg-riverbed: #06151f;
   --bg-canopy: #0a232e;
   --wood-dark: #23140d;
-  --wood-mid: #3e2417;
-  --wood-highlight: #6e442b;
+  --wood-mid: #472a19;
+  --wood-highlight: #7c4d30;
   --moss-emerald: #10b981;
   --caustic-cyan: #00f2fe;
   --amber-gold: #e5b869;
-  --glass-border: rgba(165, 243, 252, 0.22);
-  --glass-surface: rgba(7, 24, 36, 0.72);
 }
 
 * {
@@ -20,7 +18,9 @@
   padding: 0;
 }
 
-html {
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
   scroll-behavior: smooth;
   background-color: var(--bg-abyss);
   color: #e2f1f8;
@@ -28,14 +28,14 @@ html {
 }
 
 body {
-  overflow-x: hidden;
   background: radial-gradient(ellipse at 50% 0%, #0c2b3d 0%, #04111a 55%, #02080d 100%);
   min-height: 100vh;
+  position: relative;
 }
 
 h1, h2, h3, .font-display {
   font-family: 'Cinzel', serif;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
 }
 
 .font-mono-tech {
@@ -47,82 +47,75 @@ h1, h2, h3, .font-display {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
   z-index: 1;
   opacity: 0.55;
 }
 
-/* Realistic Malaysian Driftwood Bark Frame */
+/* Authentic Sculpted Malaysian Driftwood & Moss Bark Frame */
 .driftwood-box {
   position: relative;
-  background: linear-gradient(165deg, rgba(10, 31, 44, 0.88) 0%, rgba(4, 15, 23, 0.94) 100%);
+  background: linear-gradient(165deg, rgba(12, 33, 46, 0.92) 0%, rgba(4, 14, 21, 0.97) 100%);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-radius: 14px;
-  border: 2px solid var(--wood-mid);
+  border-radius: 16px;
+  border: 3px solid #4a2c18;
   box-shadow: 
-    0 20px 50px rgba(0, 0, 0, 0.85),
-    inset 0 0 0 1px rgba(110, 68, 43, 0.35),
-    inset 0 2px 15px rgba(0, 242, 254, 0.08);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+    0 18px 40px rgba(0, 0, 0, 0.9),
+    inset 0 0 0 2px rgba(124, 77, 48, 0.45),
+    inset 0 3px 18px rgba(16, 185, 129, 0.14);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
   overflow: hidden;
 }
 
-/* Subtle Fibrous Bark & Moss Corner Texture on Driftwood Boxes */
 .driftwood-box::before {
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: 12px;
+  border-radius: 13px;
   padding: 3px;
   background: linear-gradient(
     135deg,
-    #5c3824 0%,
-    #10b981 18%,
-    #2c190f 45%,
-    #4a2c1d 75%,
+    #78472a 0%,
+    #10b981 22%,
+    #3b2010 50%,
+    #633a20 78%,
     #059669 100%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
-  opacity: 0.75;
+  opacity: 0.9;
 }
 
 .driftwood-box:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
   border-color: var(--moss-emerald);
-  box-shadow: 
-    0 25px 60px rgba(0, 0, 0, 0.92),
-    0 0 25px rgba(16, 185, 129, 0.2),
-    inset 0 0 20px rgba(0, 242, 254, 0.12);
 }
 
 /* Rimless Opti-White Aquarium Glass Panel */
 .optiwhite-glass {
-  background: rgba(6, 22, 33, 0.68);
+  background: rgba(5, 19, 29, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-top: 2px solid rgba(207, 250, 254, 0.45);
-  border-left: 1px solid rgba(165, 243, 252, 0.25);
-  border-right: 1px solid rgba(165, 243, 252, 0.25);
-  border-bottom: 3px solid rgba(20, 83, 45, 0.6);
-  box-shadow: 
-    0 15px 35px rgba(0, 0, 0, 0.7),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border-top: 2px solid rgba(207, 250, 254, 0.4);
+  border-bottom: 2px solid rgba(16, 185, 129, 0.45);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.75);
 }
 
-/* Habitat Live Video Background Card */
+/* Habitat Live Video & Macro Background Card */
 .habitat-card {
   position: relative;
-  min-height: 360px;
+  min-height: 350px;
   border-radius: 16px;
   overflow: hidden;
-  border: 2px solid #3d2516;
-  box-shadow: 0 20px 45px rgba(0,0,0,0.85);
+  border: 3px solid #4a2c18;
+  box-shadow: 
+    0 20px 45px rgba(0,0,0,0.9),
+    inset 0 0 0 2px rgba(16, 185, 129, 0.35);
 }
 
 .habitat-video-bg {
@@ -132,37 +125,31 @@ h1, h2, h3, .font-display {
   height: 100%;
   object-fit: cover;
   z-index: 0;
-  filter: brightness(0.65) contrast(1.12) saturate(1.25);
-  transition: transform 0.7s ease, filter 0.5s ease;
+  filter: brightness(0.75) contrast(1.12) saturate(1.25);
+  transition: transform 0.7s ease;
 }
 
 .habitat-card:hover .habitat-video-bg {
   transform: scale(1.06);
-  filter: brightness(0.8) contrast(1.15) saturate(1.35);
 }
 
 .habitat-overlay {
   position: relative;
   z-index: 2;
-  background: linear-gradient(to top, rgba(2, 8, 13, 0.95) 0%, rgba(2, 8, 13, 0.45) 55%, rgba(2, 8, 13, 0.15) 100%);
+  background: linear-gradient(to top, rgba(2, 8, 13, 0.96) 0%, rgba(2, 8, 13, 0.55) 55%, rgba(2, 8, 13, 0.1) 100%);
   height: 100%;
+  min-height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 1.75rem;
+  padding: 1.5rem;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+/* Hide scrollbar on mobile nav strip */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
-::-webkit-scrollbar-track {
-  background: #02080d;
-}
-::-webkit-scrollbar-thumb {
-  background: #164e63;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #00f2fe;
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
