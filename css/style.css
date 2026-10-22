@@ -3,13 +3,12 @@
 :root {
   --bg-abyss: #02080d;
   --bg-riverbed: #06151f;
-  --bg-canopy: #0a232e;
-  --wood-dark: #23140d;
-  --wood-mid: #472a19;
-  --wood-highlight: #7c4d30;
+  --wood-dark: #241309;
+  --wood-mid: #5c361e;
+  --wood-light: #9c6644;
+  --wood-tan: #c89b73;
   --moss-emerald: #10b981;
   --caustic-cyan: #00f2fe;
-  --amber-gold: #e5b869;
 }
 
 * {
@@ -54,68 +53,74 @@ h1, h2, h3, .font-display {
   opacity: 0.55;
 }
 
-/* Authentic Sculpted Malaysian Driftwood & Moss Bark Frame */
-.driftwood-box {
+/* =====================================================================
+   3D SCULPTED GNARLED DRIFTWOOD BRANCH & ROOT BORDER (ALL BOXES)
+   Matches intertwined natural tan/brown root frames with protruding twigs
+   ===================================================================== */
+.driftwood-box,
+.habitat-card,
+.wood-logo-frame {
   position: relative;
-  background: linear-gradient(165deg, rgba(12, 33, 46, 0.92) 0%, rgba(4, 14, 21, 0.97) 100%);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-radius: 16px;
-  border: 3px solid #4a2c18;
+  background: linear-gradient(165deg, rgba(8, 25, 36, 0.94) 0%, rgba(3, 11, 18, 0.98) 100%);
+  border-radius: 18px;
+  border-style: solid;
+  border-width: 24px;
+  border-color: #6e4226;
+  /* 9-Slice 3D Intertwined Driftwood Root & Twig SVG Frame */
+  border-image-source: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cdefs%3E%3ClinearGradient id='w1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23c89b73'/%3E%3Cstop offset='35%25' stop-color='%238a5534'/%3E%3Cstop offset='70%25' stop-color='%234d2c18'/%3E%3Cstop offset='100%25' stop-color='%2326140a'/%3E%3C/linearGradient%3E%3ClinearGradient id='w2' x1='100%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23d4ab85'/%3E%3Cstop offset='50%25' stop-color='%23754628'/%3E%3Cstop offset='100%25' stop-color='%23331b0e'/%3E%3C/linearGradient%3E%3Cfilter id='shadow' x='-10%25' y='-10%25' width='120%25' height='120%25'%3E%3CfeDropShadow dx='2' dy='3' stdDeviation='2.5' flood-color='%23000000' flood-opacity='0.85'/%3E%3C/filter%3E%3C/defs%3E%3Cg filter='url(%23shadow)' stroke-linecap='round' stroke-linejoin='round'%3E%3C!-- Main Thick Gnarled Outer Branches --%3E%3Cpath d='M28,36 C85,18 145,42 215,24 C245,16 268,28 274,42 C284,95 262,165 278,225 C284,252 272,272 255,274 C195,284 125,260 55,276 C32,282 22,265 24,242 C14,180 38,110 22,52 Z' fill='none' stroke='url(%23w1)' stroke-width='22'/%3E%3C!-- Secondary Intertwining Twisted Roots --%3E%3Cpath d='M18,48 C70,42 135,16 198,38 C238,52 260,22 282,32 M268,25 C258,88 286,148 264,212 C254,242 278,262 268,282 M276,264 C210,256 142,286 72,262 C42,252 26,278 14,266 M34,274 C42,205 14,138 36,72 C44,44 18,28 28,14' fill='none' stroke='url(%23w2)' stroke-width='13'/%3E%3C!-- Fine Inner Bark Grain & Overlapping Tendrils --%3E%3Cpath d='M35,32 Q95,48 160,26 T265,38 M264,40 Q250,115 272,185 T260,265 M262,262 Q185,248 115,272 T32,258 M34,260 Q48,175 26,105 T38,34' fill='none' stroke='%23241208' stroke-width='4.5' opacity='0.85'/%3E%3Cpath d='M40,28 Q110,18 180,36 T258,30 M272,48 Q282,125 260,195 T270,255 M250,272 Q175,282 105,260 T42,268 M24,248 Q16,165 38,95 T28,42' fill='none' stroke='%23e0ba95' stroke-width='3' opacity='0.7'/%3E%3C!-- Protruding Corner & Edge Twigs --%3E%3Cpath d='M26,34 L6,12 M26,24 L18,4 M48,26 L32,6 M272,36 L294,14 M264,26 L284,6 M276,56 L296,42 M270,266 L294,288 M254,274 L276,296 M276,244 L296,258 M28,264 L8,288 M44,274 L24,296 M22,240 L4,254 M145,26 L132,6 M152,20 L166,4 M274,145 L295,132 M24,155 L5,170 M155,272 L172,294' fill='none' stroke='url(%23w1)' stroke-width='5.5'/%3E%3Cpath d='M6,12 L2,5 M294,14 L298,6 M294,288 L299,295 M8,288 L2,296 M132,6 L124,2 M295,132 L299,124' fill='none' stroke='%23c89b73' stroke-width='2.5'/%3E%3C/g%3E%3C/svg%3E");
+  border-image-slice: 58;
+  border-image-width: 28px;
+  border-image-outset: 10px;
+  border-image-repeat: round;
   box-shadow: 
-    0 18px 40px rgba(0, 0, 0, 0.9),
-    inset 0 0 0 2px rgba(124, 77, 48, 0.45),
-    inset 0 3px 18px rgba(16, 185, 129, 0.14);
-  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    0 22px 48px rgba(0, 0, 0, 0.92),
+    inset 0 0 24px rgba(0, 0, 0, 0.85);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  overflow: visible;
+  margin: 10px;
+}
+
+.driftwood-box:hover,
+.habitat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 28px 55px rgba(0, 0, 0, 0.95),
+    0 0 25px rgba(16, 185, 129, 0.25),
+    inset 0 0 24px rgba(0, 0, 0, 0.85);
+}
+
+/* Inner container so images/videos stay neatly inside the gnarled wood frame */
+.wood-inner-clip {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
   overflow: hidden;
 }
 
-.driftwood-box::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 13px;
-  padding: 3px;
-  background: linear-gradient(
-    135deg,
-    #78472a 0%,
-    #10b981 22%,
-    #3b2010 50%,
-    #633a20 78%,
-    #059669 100%
-  );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-  opacity: 0.9;
+/* Smaller Wood Frame Specifically for Navbar Logo */
+.wood-logo-frame {
+  border-width: 10px;
+  border-image-width: 14px;
+  border-image-outset: 5px;
+  margin: 4px;
+  background: radial-gradient(circle, rgba(12, 42, 56, 0.95) 0%, rgba(2, 8, 13, 0.98) 100%);
 }
 
-.driftwood-box:hover {
-  transform: translateY(-4px);
-  border-color: var(--moss-emerald);
-}
-
-/* Rimless Opti-White Aquarium Glass Panel */
+/* Rimless Opti-White Aquarium Glass Panel (Navbar) */
 .optiwhite-glass {
-  background: rgba(5, 19, 29, 0.85);
+  background: rgba(4, 16, 24, 0.9);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-top: 2px solid rgba(207, 250, 254, 0.4);
-  border-bottom: 2px solid rgba(16, 185, 129, 0.45);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.75);
+  border-top: 2px solid rgba(207, 250, 254, 0.35);
+  border-bottom: 3px solid #6e4226;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.85);
 }
 
-/* Habitat Live Video & Macro Background Card */
+/* Habitat Card Layout */
 .habitat-card {
-  position: relative;
-  min-height: 350px;
-  border-radius: 16px;
-  overflow: hidden;
-  border: 3px solid #4a2c18;
-  box-shadow: 
-    0 20px 45px rgba(0,0,0,0.9),
-    inset 0 0 0 2px rgba(16, 185, 129, 0.35);
+  min-height: 360px;
+  padding: 0;
 }
 
 .habitat-video-bg {
@@ -138,11 +143,11 @@ h1, h2, h3, .font-display {
   z-index: 2;
   background: linear-gradient(to top, rgba(2, 8, 13, 0.96) 0%, rgba(2, 8, 13, 0.55) 55%, rgba(2, 8, 13, 0.1) 100%);
   height: 100%;
-  min-height: 350px;
+  min-height: 330px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 1.5rem;
+  padding: 1.35rem;
 }
 
 /* Hide scrollbar on mobile nav strip */
