@@ -54,72 +54,60 @@ h1, h2, h3, .font-display {
 }
 
 /* =====================================================================
-   3D SCULPTED GNARLED DRIFTWOOD BRANCH & ROOT BORDER (ALL BOXES)
-   Matches intertwined natural tan/brown root frames with protruding twigs
+   TIGHT-FITTING 3D GNARLED DRIFTWOOD BORDER (ZERO INNER GAP)
+   Hugs images edge-to-edge without extra dark padding
    ===================================================================== */
 .driftwood-box,
-.habitat-card,
-.wood-logo-frame {
+.habitat-card {
   position: relative;
-  background: linear-gradient(165deg, rgba(8, 25, 36, 0.94) 0%, rgba(3, 11, 18, 0.98) 100%);
-  border-radius: 18px;
+  background: #041018;
+  border-radius: 12px;
   border-style: solid;
-  border-width: 24px;
+  border-width: 11px;
   border-color: #6e4226;
-  /* 9-Slice 3D Intertwined Driftwood Root & Twig SVG Frame */
-  border-image-source: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cdefs%3E%3ClinearGradient id='w1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23c89b73'/%3E%3Cstop offset='35%25' stop-color='%238a5534'/%3E%3Cstop offset='70%25' stop-color='%234d2c18'/%3E%3Cstop offset='100%25' stop-color='%2326140a'/%3E%3C/linearGradient%3E%3ClinearGradient id='w2' x1='100%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23d4ab85'/%3E%3Cstop offset='50%25' stop-color='%23754628'/%3E%3Cstop offset='100%25' stop-color='%23331b0e'/%3E%3C/linearGradient%3E%3Cfilter id='shadow' x='-10%25' y='-10%25' width='120%25' height='120%25'%3E%3CfeDropShadow dx='2' dy='3' stdDeviation='2.5' flood-color='%23000000' flood-opacity='0.85'/%3E%3C/filter%3E%3C/defs%3E%3Cg filter='url(%23shadow)' stroke-linecap='round' stroke-linejoin='round'%3E%3C!-- Main Thick Gnarled Outer Branches --%3E%3Cpath d='M28,36 C85,18 145,42 215,24 C245,16 268,28 274,42 C284,95 262,165 278,225 C284,252 272,272 255,274 C195,284 125,260 55,276 C32,282 22,265 24,242 C14,180 38,110 22,52 Z' fill='none' stroke='url(%23w1)' stroke-width='22'/%3E%3C!-- Secondary Intertwining Twisted Roots --%3E%3Cpath d='M18,48 C70,42 135,16 198,38 C238,52 260,22 282,32 M268,25 C258,88 286,148 264,212 C254,242 278,262 268,282 M276,264 C210,256 142,286 72,262 C42,252 26,278 14,266 M34,274 C42,205 14,138 36,72 C44,44 18,28 28,14' fill='none' stroke='url(%23w2)' stroke-width='13'/%3E%3C!-- Fine Inner Bark Grain & Overlapping Tendrils --%3E%3Cpath d='M35,32 Q95,48 160,26 T265,38 M264,40 Q250,115 272,185 T260,265 M262,262 Q185,248 115,272 T32,258 M34,260 Q48,175 26,105 T38,34' fill='none' stroke='%23241208' stroke-width='4.5' opacity='0.85'/%3E%3Cpath d='M40,28 Q110,18 180,36 T258,30 M272,48 Q282,125 260,195 T270,255 M250,272 Q175,282 105,260 T42,268 M24,248 Q16,165 38,95 T28,42' fill='none' stroke='%23e0ba95' stroke-width='3' opacity='0.7'/%3E%3C!-- Protruding Corner & Edge Twigs --%3E%3Cpath d='M26,34 L6,12 M26,24 L18,4 M48,26 L32,6 M272,36 L294,14 M264,26 L284,6 M276,56 L296,42 M270,266 L294,288 M254,274 L276,296 M276,244 L296,258 M28,264 L8,288 M44,274 L24,296 M22,240 L4,254 M145,26 L132,6 M152,20 L166,4 M274,145 L295,132 M24,155 L5,170 M155,272 L172,294' fill='none' stroke='url(%23w1)' stroke-width='5.5'/%3E%3Cpath d='M6,12 L2,5 M294,14 L298,6 M294,288 L299,295 M8,288 L2,296 M132,6 L124,2 M295,132 L299,124' fill='none' stroke='%23c89b73' stroke-width='2.5'/%3E%3C/g%3E%3C/svg%3E");
-  border-image-slice: 58;
-  border-image-width: 28px;
-  border-image-outset: 10px;
-  border-image-repeat: round;
-  box-shadow: 
-    0 22px 48px rgba(0, 0, 0, 0.92),
-    inset 0 0 24px rgba(0, 0, 0, 0.85);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-  overflow: visible;
-  margin: 10px;
+  border-image-source: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cdefs%3E%3ClinearGradient id='w1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23d4a87e'/%3E%3Cstop offset='40%25' stop-color='%238c5635'/%3E%3Cstop offset='75%25' stop-color='%23522f1a'/%3E%3Cstop offset='100%25' stop-color='%2329150a'/%3E%3C/linearGradient%3E%3ClinearGradient id='w2' x1='100%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23e0b890'/%3E%3Cstop offset='50%25' stop-color='%2378472a'/%3E%3Cstop offset='100%25' stop-color='%23381e0f'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg stroke-linecap='round' stroke-linejoin='round'%3E%3C!-- Tight Outer Root Frame Sitting Flush on the Edge --%3E%3Crect x='14' y='14' width='272' height='272' rx='14' fill='none' stroke='url(%23w1)' stroke-width='24'/%3E%3Cpath d='M12,24 C85,6 155,28 235,12 C265,8 284,18 286,38 C294,105 272,175 288,242 C292,268 280,284 260,286 C195,294 115,272 42,288 C20,292 12,276 14,252 C6,185 28,110 12,42 Z' fill='none' stroke='url(%23w2)' stroke-width='16'/%3E%3C!-- Bark Ridges & Grain --%3E%3Cpath d='M20,20 Q95,32 170,14 T280,24 M280,26 Q268,115 286,195 T278,278 M276,278 Q190,266 110,286 T20,276 M20,274 Q32,180 14,100 T22,22' fill='none' stroke='%23241208' stroke-width='4.5' opacity='0.9'/%3E%3Cpath d='M24,16 Q110,8 190,24 T274,18 M284,34 Q292,125 274,205 T282,270 M268,284 Q180,292 95,274 T28,282 M14,264 Q8,165 26,90 T18,28' fill='none' stroke='%23ebd0b5' stroke-width='2.5' opacity='0.75'/%3E%3C!-- Subtle Corner Twigs --%3E%3Cpath d='M16,22 L3,6 M28,14 L16,2 M284,22 L297,6 M272,14 L284,2 M284,278 L297,294 M270,286 L284,298 M16,278 L3,294 M28,286 L14,298' fill='none' stroke='url(%23w1)' stroke-width='5'/%3E%3C/g%3E%3C/svg%3E");
+  border-image-slice: 36;
+  border-image-width: 14px;
+  border-image-outset: 3px;
+  border-image-repeat: stretch;
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.9);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
 }
 
 .driftwood-box:hover,
 .habitat-card:hover {
   transform: translateY(-4px);
   box-shadow: 
-    0 28px 55px rgba(0, 0, 0, 0.95),
-    0 0 25px rgba(16, 185, 129, 0.25),
-    inset 0 0 24px rgba(0, 0, 0, 0.85);
+    0 22px 48px rgba(0, 0, 0, 0.95),
+    0 0 20px rgba(16, 185, 129, 0.25);
 }
 
-/* Inner container so images/videos stay neatly inside the gnarled wood frame */
-.wood-inner-clip {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-/* Smaller Wood Frame Specifically for Navbar Logo */
+/* Flush Wood Frame for Top-Left Navbar Logo */
 .wood-logo-frame {
-  border-width: 10px;
-  border-image-width: 14px;
-  border-image-outset: 5px;
-  margin: 4px;
-  background: radial-gradient(circle, rgba(12, 42, 56, 0.95) 0%, rgba(2, 8, 13, 0.98) 100%);
+  border-radius: 10px;
+  border: 3px solid #9c6644;
+  box-shadow: 
+    0 0 0 2px #3b2010,
+    0 6px 16px rgba(0, 0, 0, 0.85);
+  overflow: hidden;
+  background: #02080d;
+  padding: 0;
 }
 
 /* Rimless Opti-White Aquarium Glass Panel (Navbar) */
 .optiwhite-glass {
-  background: rgba(4, 16, 24, 0.9);
+  background: rgba(4, 16, 24, 0.92);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-top: 2px solid rgba(207, 250, 254, 0.35);
+  border-top: 1px solid rgba(207, 250, 254, 0.3);
   border-bottom: 3px solid #6e4226;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.85);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.85);
 }
 
 /* Habitat Card Layout */
 .habitat-card {
-  min-height: 360px;
+  min-height: 340px;
   padding: 0;
 }
 
@@ -130,24 +118,24 @@ h1, h2, h3, .font-display {
   height: 100%;
   object-fit: cover;
   z-index: 0;
-  filter: brightness(0.75) contrast(1.12) saturate(1.25);
+  filter: brightness(0.78) contrast(1.1) saturate(1.2);
   transition: transform 0.7s ease;
 }
 
 .habitat-card:hover .habitat-video-bg {
-  transform: scale(1.06);
+  transform: scale(1.05);
 }
 
 .habitat-overlay {
   position: relative;
   z-index: 2;
-  background: linear-gradient(to top, rgba(2, 8, 13, 0.96) 0%, rgba(2, 8, 13, 0.55) 55%, rgba(2, 8, 13, 0.1) 100%);
+  background: linear-gradient(to top, rgba(2, 8, 13, 0.95) 0%, rgba(2, 8, 13, 0.5) 55%, rgba(2, 8, 13, 0.05) 100%);
   height: 100%;
-  min-height: 330px;
+  min-height: 325px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 1.35rem;
+  padding: 1.25rem;
 }
 
 /* Hide scrollbar on mobile nav strip */
