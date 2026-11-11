@@ -41,7 +41,7 @@ h1, h2, h3, .font-display {
   font-family: 'JetBrains Mono', monospace;
 }
 
-/* WebGL Underwater Caustic Canvas */
+/* Background Ambient Caustic Canvas */
 #caustic-canvas {
   position: fixed;
   top: 0;
@@ -50,64 +50,286 @@ h1, h2, h3, .font-display {
   height: 100%;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.55;
+  opacity: 0.35;
 }
 
 /* =====================================================================
-   TIGHT-FITTING 3D GNARLED DRIFTWOOD BORDER (ZERO INNER GAP)
-   Hugs images edge-to-edge without extra dark padding
+   FULL-BLEED PANORAMIC AQUARIUM HERO (LIKE IN USER VIDEO)
    ===================================================================== */
-.driftwood-box,
-.habitat-card {
+.hero-panoramic-section {
   position: relative;
-  background: #041018;
+  min-height: 640px;
+  overflow: hidden;
+  border-bottom: 2px solid rgba(0, 242, 254, 0.25);
+  display: flex;
+  align-items: center;
+  background-color: #02121f;
+}
+
+@media (min-width: 1024px) {
+  .hero-panoramic-section {
+    min-height: 680px;
+  }
+}
+
+.hero-video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  filter: brightness(0.88) contrast(1.1) saturate(1.15);
+}
+
+#hero-3d-aquarium {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  z-index: 1;
+  touch-action: none;
+}
+
+.hero-underwater-vignette {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(to right, rgba(2, 8, 13, 0.65) 0%, rgba(2, 8, 13, 0.3) 50%, rgba(2, 8, 13, 0.4) 100%),
+    linear-gradient(to bottom, rgba(2, 8, 13, 0.55) 0%, transparent 22%, transparent 75%, rgba(2, 8, 13, 0.85) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hero-3d-glass-rim {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, rgba(0, 242, 254, 0.3) 0%, rgba(255, 255, 255, 0.95) 50%, rgba(0, 242, 254, 0.3) 100%);
+  z-index: 10;
+  pointer-events: none;
+  box-shadow: 0 0 16px rgba(0, 242, 254, 0.85);
+}
+
+/* 3D HUD Floating Controls */
+.hero-3d-hud {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.hero-3d-hud > * {
+  pointer-events: auto;
+}
+
+.hero-3d-hud-btn {
+  padding: 6px 13px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  background: rgba(4, 19, 31, 0.88);
+  border: 1px solid rgba(0, 242, 254, 0.38);
+  color: #bae6fd;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.hero-3d-hud-btn:hover {
+  background: rgba(0, 242, 254, 0.28);
+  border-color: #38bdf8;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(0, 242, 254, 0.35);
+}
+
+.hero-3d-hud-btn.active {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.9), rgba(16, 185, 129, 0.9));
+  border-color: #67e8f9;
+  color: #02080d;
+  font-weight: 700;
+  box-shadow: 0 0 18px rgba(6, 182, 212, 0.6);
+}
+
+.feed-fish-pulse {
+  position: relative;
+}
+.feed-fish-pulse::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 9999px;
+  border: 2px solid #f59e0b;
+  animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.85; }
+  50% { transform: scale(1.18); opacity: 0; }
+  100% { transform: scale(0.95); opacity: 0; }
+}
+
+/* =====================================================================
+   PRODUCT SECTION ONLY: 3D TWISTED DRIFTWOOD PERIMETER FRAME
+   No inner frame around product photo. Applied around outer perimeter
+   of the entire card straddling the edge: 30% overlapping inside the card
+   and 70% extending outside onto the dark background. All internal text,
+   badges, and buttons sit cleanly inside the clear zone with full legibility.
+   ===================================================================== */
+.product-wood-card,
+.driftwood-product-card {
+  position: relative;
+  background: rgba(4, 16, 24, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 12px;
+  padding: 16px 15px 21px 15px;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.9);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.product-wood-card::after,
+.driftwood-product-card::after {
+  content: "";
+  position: absolute;
+  top: -27px;
+  right: -25px;
+  bottom: -25px;
+  left: -25px;
+  pointer-events: none;
+  z-index: 18;
+  box-sizing: border-box;
   border-style: solid;
-  border-width: 11px;
-  border-color: #6e4226;
-  border-image-source: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cdefs%3E%3ClinearGradient id='w1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23d4a87e'/%3E%3Cstop offset='40%25' stop-color='%238c5635'/%3E%3Cstop offset='75%25' stop-color='%23522f1a'/%3E%3Cstop offset='100%25' stop-color='%2329150a'/%3E%3C/linearGradient%3E%3ClinearGradient id='w2' x1='100%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23e0b890'/%3E%3Cstop offset='50%25' stop-color='%2378472a'/%3E%3Cstop offset='100%25' stop-color='%23381e0f'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg stroke-linecap='round' stroke-linejoin='round'%3E%3C!-- Tight Outer Root Frame Sitting Flush on the Edge --%3E%3Crect x='14' y='14' width='272' height='272' rx='14' fill='none' stroke='url(%23w1)' stroke-width='24'/%3E%3Cpath d='M12,24 C85,6 155,28 235,12 C265,8 284,18 286,38 C294,105 272,175 288,242 C292,268 280,284 260,286 C195,294 115,272 42,288 C20,292 12,276 14,252 C6,185 28,110 12,42 Z' fill='none' stroke='url(%23w2)' stroke-width='16'/%3E%3C!-- Bark Ridges & Grain --%3E%3Cpath d='M20,20 Q95,32 170,14 T280,24 M280,26 Q268,115 286,195 T278,278 M276,278 Q190,266 110,286 T20,276 M20,274 Q32,180 14,100 T22,22' fill='none' stroke='%23241208' stroke-width='4.5' opacity='0.9'/%3E%3Cpath d='M24,16 Q110,8 190,24 T274,18 M284,34 Q292,125 274,205 T282,270 M268,284 Q180,292 95,274 T28,282 M14,264 Q8,165 26,90 T18,28' fill='none' stroke='%23ebd0b5' stroke-width='2.5' opacity='0.75'/%3E%3C!-- Subtle Corner Twigs --%3E%3Cpath d='M16,22 L3,6 M28,14 L16,2 M284,22 L297,6 M272,14 L284,2 M284,278 L297,294 M270,286 L284,298 M16,278 L3,294 M28,286 L14,298' fill='none' stroke='url(%23w1)' stroke-width='5'/%3E%3C/g%3E%3C/svg%3E");
-  border-image-slice: 36;
-  border-image-width: 14px;
-  border-image-outset: 3px;
+  border-color: transparent;
+  border-width: 56px 50px 50px 50px;
+  border-image-source: url('../images/driftwood-border-frame-alpha.png?v=20261112');
+  border-image-slice: 152 142 126 148;
+  border-image-width: 56px 50px 50px 50px;
+  border-image-outset: 0;
   border-image-repeat: stretch;
-  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.9);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.92)) contrast(1.06) saturate(1.1);
+}
+
+.product-wood-card:hover,
+.driftwood-product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 42px rgba(0, 0, 0, 0.96), 0 0 22px rgba(0, 242, 254, 0.16);
+}
+
+/* Clean Full-Bleed Specimen Photo (No Inner Wood Frame) */
+.product-photo-box {
+  position: relative;
+  width: 100%;
+  height: 185px;
+  background: #02090e;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.product-photo-box .product-specimen-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.product-wood-card:hover .product-specimen-photo,
+.driftwood-product-card:hover .product-specimen-photo {
+  transform: scale(1.06);
+}
+
+/* Informational Details Section */
+.product-card-body {
+  padding: 12px 6px 8px 6px;
+  flex: 1 1 auto;
+  position: relative;
+  z-index: 25;
+}
+
+/* Action Footer: Always 100% unobstructed and clickable */
+.product-card-footer {
+  padding: 10px 6px 2px 6px;
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  position: relative;
+  z-index: 30;
+}
+
+/* =====================================================================
+   CLEAN LUXURY GLASSMORPHIC CARDS (FOR HABITATS, MODAL & PORTFOLIO)
+   NO wood frame border here — clean, sleek, high-tech aquarium styling!
+   ===================================================================== */
+.habitat-card,
+.driftwood-box {
+  position: relative;
+  background: rgba(4, 16, 24, 0.92);
+  border-radius: 16px;
+  border: 1px solid rgba(0, 242, 254, 0.25);
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.88);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   overflow: hidden;
 }
 
-.driftwood-box:hover,
-.habitat-card:hover {
+.habitat-card:hover,
+.driftwood-box:hover {
   transform: translateY(-4px);
   box-shadow: 
-    0 22px 48px rgba(0, 0, 0, 0.95),
-    0 0 20px rgba(16, 185, 129, 0.25);
+    0 24px 50px rgba(0, 0, 0, 0.95),
+    0 0 24px rgba(0, 242, 254, 0.25);
+  border-color: rgba(0, 242, 254, 0.55);
 }
 
 /* Flush Wood Frame for Top-Left Navbar Logo */
 .wood-logo-frame {
   border-radius: 10px;
-  border: 3px solid #9c6644;
-  box-shadow: 
-    0 0 0 2px #3b2010,
-    0 6px 16px rgba(0, 0, 0, 0.85);
+  border: 2px solid rgba(0, 242, 254, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
   overflow: hidden;
   background: #02080d;
   padding: 0;
 }
 
-/* Rimless Opti-White Aquarium Glass Panel (Navbar) */
+/* Rimless Opti-White Aquarium Glass Panel (Navbar & Drawers) */
 .optiwhite-glass {
-  background: rgba(4, 16, 24, 0.92);
+  background: rgba(4, 16, 24, 0.94);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-top: 1px solid rgba(207, 250, 254, 0.3);
-  border-bottom: 3px solid #6e4226;
+  border-bottom: 2px solid rgba(0, 242, 254, 0.3);
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.85);
 }
 
 /* Habitat Card Layout */
 .habitat-card {
-  min-height: 340px;
+  min-height: 360px;
   padding: 0;
 }
 
@@ -120,29 +342,82 @@ h1, h2, h3, .font-display {
   z-index: 0;
   filter: brightness(0.78) contrast(1.1) saturate(1.2);
   transition: transform 0.7s ease;
+  border-radius: 16px;
 }
 
 .habitat-card:hover .habitat-video-bg {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 .habitat-overlay {
   position: relative;
   z-index: 2;
-  background: linear-gradient(to top, rgba(2, 8, 13, 0.95) 0%, rgba(2, 8, 13, 0.5) 55%, rgba(2, 8, 13, 0.05) 100%);
+  background: linear-gradient(to top, rgba(2, 8, 13, 0.96) 0%, rgba(2, 8, 13, 0.6) 55%, rgba(2, 8, 13, 0.05) 100%);
   height: 100%;
-  min-height: 325px;
+  min-height: 345px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 1.25rem;
+  padding: 1.35rem;
+  border-radius: 16px;
 }
 
-/* Hide scrollbar on mobile nav strip */
+/* 3D Tank Studio Range Sliders */
+input[type="range"].aqua-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 9999px;
+  background: #1e293b;
+  outline: none;
+  transition: background 0.2s;
+}
+
+input[type="range"].aqua-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #00f2fe;
+  cursor: pointer;
+  box-shadow: 0 0 12px #00f2fe;
+  border: 2px solid #ffffff;
+  transition: transform 0.15s ease;
+}
+
+input[type="range"].aqua-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+  box-shadow: 0 0 18px #00f2fe;
+}
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Audio Wave Animation for Sound Button */
+.sound-playing-wave {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px;
+}
+.sound-playing-wave span {
+  width: 2px;
+  background-color: #38bdf8;
+  border-radius: 1px;
+  animation: sound-bounce 1s ease-in-out infinite alternate;
+}
+.sound-playing-wave span:nth-child(2) { animation-delay: 0.2s; height: 100%; }
+.sound-playing-wave span:nth-child(3) { animation-delay: 0.4s; height: 60%; }
+.sound-playing-wave span:nth-child(1) { height: 40%; }
+
+@keyframes sound-bounce {
+  0% { transform: scaleY(0.3); }
+  100% { transform: scaleY(1); }
 }

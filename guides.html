@@ -6,20 +6,43 @@
   <title>Aquarium Science & Care Guides | AquaticArea</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <link rel="stylesheet" href="css/style.css?v=20261112" />
 </head>
 <body class="selection:bg-cyan-500 selection:text-slate-950">
 
   <canvas id="caustic-canvas"></canvas>
 
-  <!-- Navbar -->
-  <header class="sticky top-0 z-30 optiwhite-glass">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-3.5">
-        <img src="images/logo.png" onerror="this.src='https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=160&q=80'" alt="AquaticArea Logo" class="w-12 h-12 rounded-xl object-cover border border-cyan-400/50" />
+  <!-- Top Announcement & Audio Ambience Bar -->
+  <div class="relative z-30 bg-slate-950/95 border-b border-cyan-500/20 text-[11px] py-2 px-3 sm:px-6">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+      <div class="flex items-center gap-2 text-emerald-300 font-mono-tech">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping shrink-0"></span>
+        <span class="truncate">Aquarium Science Hub • Biological Filtration, Water Chemistry & CO2 Injection</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-3 text-slate-300">
+        <button 
+          onclick="toggleAquaticSound()" 
+          class="audio-toggle-btn px-2.5 py-1 rounded-full bg-slate-900 border border-slate-700 hover:border-cyan-400 text-slate-300 text-[10px] font-mono-tech transition flex items-center gap-1.5"
+        >
+          <span>🔇</span> <span>Sound: Muted</span>
+        </button>
+        <a href="https://www.youtube.com/@aquaticarea4062" target="_blank" class="hover:text-red-400 transition font-medium">YouTube</a>
+        <a href="https://instagram.com/aquatic_area" target="_blank" class="hover:text-pink-400 transition font-medium">Instagram</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Navbar -->
+  <header class="sticky top-0 z-40 optiwhite-glass">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <div class="wood-logo-frame w-16 h-12 sm:w-20 sm:h-14 shrink-0">
+          <img src="images/logo.png" onerror="this.onerror=null; this.src='images/habitat-fish.jpg'" alt="AquaticArea Logo" class="w-full h-full object-cover block" />
+        </div>
         <div>
-          <span class="text-xl sm:text-2xl font-extrabold tracking-wider font-display bg-gradient-to-r from-cyan-300 via-emerald-300 to-amber-200 bg-clip-text text-transparent">AQUATIC AREA</span>
-          <span class="block text-[11px] font-mono-tech text-slate-400 tracking-widest uppercase">Aquarium Science & DIY Hub</span>
+          <span class="text-base sm:text-2xl font-extrabold tracking-wider font-display bg-gradient-to-r from-cyan-300 via-emerald-300 to-amber-200 bg-clip-text text-transparent">AQUATIC AREA</span>
+          <span class="block text-[9px] sm:text-xs font-mono-tech text-slate-400 tracking-widest uppercase">Aquarium Science & DIY Hub</span>
         </div>
       </a>
 
@@ -27,12 +50,18 @@
         <a href="index.html" class="hover:text-cyan-300 transition">Home</a>
         <a href="shop.html" class="hover:text-cyan-300 transition">Live Store</a>
         <a href="portfolio.html" class="hover:text-emerald-300 transition">Planted Portfolio</a>
-        <a href="guides.html" class="text-amber-300 font-semibold border-b-2 border-amber-400 pb-1">Aquarium Science Hub</a>
+        <a href="guides.html" class="text-amber-300 font-semibold border-b-2 border-amber-400 pb-0.5">Aquarium Science Hub</a>
       </nav>
 
-      <button onclick="toggleCalculatorModal(true)" class="px-3.5 py-2 rounded-xl bg-amber-500/15 hover:bg-amber-500/30 border border-amber-400/50 text-amber-200 text-xs sm:text-sm font-semibold transition">
-        📐 3D Calculator
-      </button>
+      <div class="flex items-center gap-2.5">
+        <button onclick="toggleCalculatorModal(true)" class="px-3.5 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/35 border border-amber-400/50 text-amber-200 text-xs sm:text-sm font-bold transition flex items-center gap-1.5 shadow-lg shadow-amber-500/10">
+          <span>📐</span> <span class="hidden sm:inline">3D Tank</span> Studio
+        </button>
+        <button onclick="toggleCartDrawer()" class="relative px-3.5 py-2 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/35 border border-cyan-400/50 text-cyan-200 text-xs font-bold transition flex items-center gap-1.5 shadow-lg shadow-cyan-500/10">
+          <span>🛒</span>
+          <span id="cart-count-badge" class="px-1.5 py-0.5 text-[10px] rounded-full bg-cyan-400 text-slate-950 font-bold">0</span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -46,32 +75,32 @@
       </p>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="driftwood-box p-5">
-          <span class="text-xs font-mono-tech text-rose-400">Days 1 – 7 • Stage 01</span>
-          <h3 class="text-lg font-bold text-white mt-1 mb-2">Ammonia Leaching (NH₃/NH₄⁺)</h3>
+        <div class="driftwood-box p-6 space-y-2">
+          <span class="text-xs font-mono-tech text-rose-400 font-bold">Days 1 – 7 • Stage 01</span>
+          <h3 class="text-lg font-bold text-white">Ammonia Leaching (NH₃/NH₄⁺)</h3>
           <p class="text-xs text-slate-300 leading-relaxed">
             Active aquasoil releases initial ammonia (2–4 ppm). Perform 50% water changes every 2 days and dose concentrated nitrifying bacteria starter. Keep lighting at 6 hours/day.
           </p>
         </div>
-        <div class="driftwood-box p-5">
-          <span class="text-xs font-mono-tech text-amber-400">Days 8 – 16 • Stage 02</span>
-          <h3 class="text-lg font-bold text-white mt-1 mb-2">Nitrite Spike (NO₂⁻)</h3>
+        <div class="driftwood-box p-6 space-y-2">
+          <span class="text-xs font-mono-tech text-amber-400 font-bold">Days 8 – 16 • Stage 02</span>
+          <h3 class="text-lg font-bold text-white">Nitrite Spike (NO₂⁻)</h3>
           <p class="text-xs text-slate-300 leading-relaxed">
             <em>Nitrosomonas</em> bacteria oxidize ammonia into Nitrite. Diatom brown algae may appear on glass. Perform two 40% water changes per week.
           </p>
         </div>
-        <div class="driftwood-box p-5">
-          <span class="text-xs font-mono-tech text-emerald-400">Days 17 – 25 • Stage 03</span>
-          <h3 class="text-lg font-bold text-white mt-1 mb-2">Nitrate Conversion (NO₃⁻)</h3>
+        <div class="driftwood-box p-6 space-y-2">
+          <span class="text-xs font-mono-tech text-emerald-400 font-bold">Days 17 – 25 • Stage 03</span>
+          <h3 class="text-lg font-bold text-white">Nitrate Conversion (NO₃⁻)</h3>
           <p class="text-xs text-slate-300 leading-relaxed">
             <em>Nitrobacter</em> colonies establish inside your biological filter media. Ammonia and Nitrite drop to 0.0 ppm while plants actively pearl oxygen.
           </p>
         </div>
-        <div class="driftwood-box p-5">
-          <span class="text-xs font-mono-tech text-cyan-300">Day 26+ • Stage 04</span>
-          <h3 class="text-lg font-bold text-white mt-1 mb-2">Livestock Introduction</h3>
+        <div class="driftwood-box p-6 space-y-2">
+          <span class="text-xs font-mono-tech text-cyan-300 font-bold">Day 26+ • Stage 04</span>
+          <h3 class="text-lg font-bold text-white">Livestock Introduction</h3>
           <p class="text-xs text-slate-300 leading-relaxed">
-            Introduce Clean-Up Crew (Neocaridina Shrimp & Nerite Snails) first, followed 7 days later by quarantined Discus, Betta, or Guppies via drip acclimation.
+            Introduce Clean-Up Crew (Neocaridina Shrimp & Nerite Snails) first, followed 7 days later by quarantined Discus, Betta, or Guppies via slow drip acclimation.
           </p>
         </div>
       </div>
@@ -95,32 +124,32 @@
           </thead>
           <tbody class="divide-y divide-slate-800/80 text-slate-200">
             <tr>
-              <td class="p-4 font-bold text-white">Show Discus (Symphysodon)</td>
+              <td class="p-4 font-bold text-white flex items-center gap-2"><span>🐠</span> Show Discus (Symphysodon)</td>
               <td class="p-4 font-mono-tech text-amber-300">28 – 30°C</td>
-              <td class="p-4 font-mono-tech">6.0 – 6.8</td>
-              <td class="p-4 font-mono-tech">80 – 160</td>
+              <td class="p-4 font-mono-tech text-cyan-300">6.0 – 6.8</td>
+              <td class="p-4 font-mono-tech text-emerald-300">80 – 160</td>
               <td class="p-4 text-slate-300">Requires warm, pristine soft water; heat-tolerant plants like Anubias, Java Fern & Amazon Swords.</td>
             </tr>
             <tr>
-              <td class="p-4 font-bold text-white">Halfmoon & Plakat Betta</td>
+              <td class="p-4 font-bold text-white flex items-center gap-2"><span>🐟</span> Halfmoon & Plakat Betta</td>
               <td class="p-4 font-mono-tech text-amber-300">25 – 27°C</td>
-              <td class="p-4 font-mono-tech">6.5 – 7.4</td>
-              <td class="p-4 font-mono-tech">120 – 220</td>
+              <td class="p-4 font-mono-tech text-cyan-300">6.5 – 7.4</td>
+              <td class="p-4 font-mono-tech text-emerald-300">120 – 220</td>
               <td class="p-4 text-slate-300">Gentle filter flow, tannin-rich catappa leaves, and floating plants to build bubble nests.</td>
             </tr>
             <tr>
-              <td class="p-4 font-bold text-white">Exotic Line-Bred Guppies</td>
+              <td class="p-4 font-bold text-white flex items-center gap-2"><span>✨</span> Exotic Line-Bred Guppies</td>
               <td class="p-4 font-mono-tech text-amber-300">23 – 26°C</td>
-              <td class="p-4 font-mono-tech">7.0 – 7.8</td>
-              <td class="p-4 font-mono-tech">180 – 280</td>
+              <td class="p-4 font-mono-tech text-cyan-300">7.0 – 7.8</td>
+              <td class="p-4 font-mono-tech text-emerald-300">180 – 280</td>
               <td class="p-4 text-slate-300">Thrives in mineral-rich water (GH 8-12) with dense stem plant cover for fry survival.</td>
             </tr>
             <tr>
-              <td class="p-4 font-bold text-white">Neocaridina Dwarf Shrimp</td>
+              <td class="p-4 font-bold text-white flex items-center gap-2"><span>🦐</span> Neocaridina Dwarf Shrimp</td>
               <td class="p-4 font-mono-tech text-amber-300">20 – 25°C</td>
-              <td class="p-4 font-mono-tech">6.8 – 7.6</td>
-              <td class="p-4 font-mono-tech">150 – 220</td>
-              <td class="p-4 text-slate-300">Zero copper fertilizers; requires mature biofilm on driftwood and mosses for molting stability.</td>
+              <td class="p-4 font-mono-tech text-cyan-300">6.8 – 7.6</td>
+              <td class="p-4 font-mono-tech text-emerald-300">150 – 220</td>
+              <td class="p-4 text-slate-300">Zero copper fertilizers; requires mature biofilm on driftwood and weeping moss for molting stability.</td>
             </tr>
           </tbody>
         </table>
@@ -128,6 +157,121 @@
     </section>
   </main>
 
-  <script src="js/app.js"></script>
+  <!-- POPUP MODAL: ADVANCED 3D RIMLESS TANK BUILDER -->
+  <div id="calc-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/85 backdrop-blur-md p-3 sm:p-5">
+    <div class="driftwood-box max-w-5xl w-full p-4 sm:p-7 relative max-h-[92vh] overflow-y-auto">
+      <button onclick="toggleCalculatorModal(false)" class="absolute top-3 right-3 z-30 w-9 h-9 rounded-full bg-slate-800 hover:bg-rose-600 text-white font-bold transition">✕</button>
+
+      <div class="mb-5">
+        <span class="text-xs font-mono-tech text-amber-300 uppercase">Interactive Three.js Engineering Tool</span>
+        <h3 class="text-xl sm:text-2xl font-bold text-white">3D Rimless Aquarium Studio & Aquasoil Calculator</h3>
+      </div>
+
+      <div class="grid md:grid-cols-12 gap-6 items-start">
+        <div class="md:col-span-5 space-y-4">
+          <div class="space-y-1">
+            <div class="flex justify-between text-xs"><span class="text-slate-300">Tank Length:</span><strong id="val-L" class="text-cyan-300 font-mono-tech">90 cm</strong></div>
+            <input id="calc-L" type="range" min="30" max="180" step="5" value="90" class="aqua-slider" />
+          </div>
+          <div class="space-y-1">
+            <div class="flex justify-between text-xs"><span class="text-slate-300">Tank Width / Depth:</span><strong id="val-W" class="text-cyan-300 font-mono-tech">45 cm</strong></div>
+            <input id="calc-W" type="range" min="20" max="75" step="5" value="45" class="aqua-slider" />
+          </div>
+          <div class="space-y-1">
+            <div class="flex justify-between text-xs"><span class="text-slate-300">Tank Height:</span><strong id="val-H" class="text-cyan-300 font-mono-tech">45 cm</strong></div>
+            <input id="calc-H" type="range" min="20" max="75" step="5" value="45" class="aqua-slider" />
+          </div>
+          <div class="space-y-1">
+            <div class="flex justify-between text-xs"><span class="text-emerald-300">Aquasoil Slope Depth:</span><strong id="val-soil" class="text-emerald-300 font-mono-tech">6 cm</strong></div>
+            <input id="calc-soil" type="range" min="3" max="12" step="1" value="6" class="aqua-slider" />
+          </div>
+
+          <div class="pt-2">
+            <label class="text-xs text-slate-300 block mb-1.5">3D Hardscape Preset:</label>
+            <div class="grid grid-cols-3 gap-2">
+              <button onclick="setHardscapeStyle('ryuboku', this)" class="hardscape-style-btn active px-2 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-[11px] font-semibold text-slate-300 hover:text-cyan-300">🌿 Ryuboku</button>
+              <button onclick="setHardscapeStyle('iwagumi', this)" class="hardscape-style-btn px-2 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-[11px] font-semibold text-slate-300 hover:text-cyan-300">🪨 Iwagumi</button>
+              <button onclick="setHardscapeStyle('biotope', this)" class="hardscape-style-btn px-2 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-[11px] font-semibold text-slate-300 hover:text-cyan-300">🪵 Biotope</button>
+            </div>
+          </div>
+
+          <button onclick="sendTankSpecWhatsApp()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold text-xs sm:text-sm transition shadow-lg shadow-emerald-500/20">
+            Inquire on WhatsApp (+91 7978733900)
+          </button>
+        </div>
+
+        <div class="md:col-span-7 space-y-4">
+          <div class="relative w-full h-64 sm:h-72 rounded-2xl bg-slate-950/90 border border-cyan-500/35 overflow-hidden shadow-2xl">
+            <div id="three-tank-viewport" class="w-full h-full cursor-grab active:cursor-grabbing"></div>
+            <div class="absolute bottom-2 left-3 text-[10px] font-mono-tech text-slate-400 pointer-events-none bg-slate-950/70 px-2 py-0.5 rounded">🔄 Drag 360° • Pinch to Zoom</div>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-mono-tech">
+            <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800"><span class="text-slate-400 block text-[10px]">Gross Volume</span><strong id="res-gross" class="text-cyan-300 text-xs sm:text-sm">182.3 L</strong></div>
+            <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800"><span class="text-slate-400 block text-[10px]">Net Water</span><strong id="res-net" class="text-emerald-300 text-xs sm:text-sm">154.9 L</strong></div>
+            <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800"><span class="text-slate-400 block text-[10px]">Active Aquasoil</span><strong id="res-soil" class="text-amber-300 text-xs sm:text-sm">24.3 L</strong></div>
+            <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800"><span class="text-slate-400 block text-[10px]">Filled Weight</span><strong id="res-weight" class="text-rose-300 text-xs sm:text-sm">~210 kg</strong></div>
+            <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800"><span class="text-slate-400 block text-[10px]">Canister Filter</span><strong id="res-filter" class="text-white text-xs">1085 L/hr</strong></div>
+            <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800"><span class="text-slate-400 block text-[10px]">Planted LED</span><strong id="res-led" class="text-white text-xs">70W High-PAR</strong></div>
+            <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800"><span class="text-slate-400 block text-[10px]">CO2 Injection</span><strong id="res-co2" class="text-white text-xs">~3.8 BPS</strong></div>
+            <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800"><span class="text-slate-400 block text-[10px]">Titanium Heater</span><strong id="res-heater" class="text-white text-xs">200W</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDING CART BASKET DRAWER -->
+  <div id="cart-drawer" class="fixed top-0 right-0 z-50 h-full w-80 sm:w-96 optiwhite-glass p-6 transform translate-x-full transition-transform duration-300 flex flex-col justify-between shadow-2xl">
+    <div>
+      <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+        <h3 class="text-base sm:text-lg font-bold text-white flex items-center gap-2"><span>🛒</span> <span>Livestock Basket</span></h3>
+        <button onclick="toggleCartDrawer(false)" class="text-slate-400 hover:text-white font-bold text-lg">✕</button>
+      </div>
+      <div id="cart-items-list" class="my-4 space-y-3 max-h-[62vh] overflow-y-auto no-scrollbar"></div>
+    </div>
+    <div class="pt-4 border-t border-slate-800 space-y-3">
+      <div class="flex items-center justify-between text-base font-bold">
+        <span>Estimated Total:</span>
+        <span id="cart-total-inr" class="text-cyan-300 font-mono-tech">₹0</span>
+      </div>
+      <button onclick="checkoutCartWhatsApp()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold text-sm transition shadow-lg shadow-emerald-500/20">
+        Order via WhatsApp (+91 7978733900)
+      </button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="relative z-10 border-t border-slate-800/80 bg-slate-950/95 py-12 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-sm">
+      <div class="space-y-3">
+        <h4 class="font-display font-bold text-white text-xl">AQUATIC AREA</h4>
+        <p class="text-slate-400 text-xs leading-relaxed">Aquarium science and biological filtration guides for planted aquariums and show livestock.</p>
+      </div>
+      <div>
+        <h4 class="font-bold text-white mb-3">Guides</h4>
+        <ul class="space-y-2 text-xs text-slate-300">
+          <li><a href="index.html" class="hover:text-cyan-300">Home</a></li>
+          <li><a href="shop.html" class="hover:text-cyan-300">Live Store</a></li>
+          <li><a href="portfolio.html" class="hover:text-cyan-300">Planted Scapes</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-white mb-3">Channels</h4>
+        <ul class="space-y-2 text-xs text-slate-300">
+          <li><a href="https://www.youtube.com/@aquaticarea4062" target="_blank" class="hover:text-red-400">▶ YouTube: @Aquaticarea4062</a></li>
+          <li><a href="https://instagram.com/aquatic_area" target="_blank" class="hover:text-pink-400">📸 Instagram: @aquatic_area</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-white mb-3">Direct Contact</h4>
+        <p class="text-xs text-emerald-300 font-mono-tech mb-1.5">💬 WhatsApp: +91 7978733900</p>
+        <p class="text-xs text-slate-300 font-mono-tech">✉️ aquaticarea@gmail.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/aquarium3d.js?v=20261112"></script>
+  <script src="js/app.js?v=20261112"></script>
 </body>
 </html>
